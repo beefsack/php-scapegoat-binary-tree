@@ -1,0 +1,28 @@
+{
+    "name": "beefsack/scapegoat-binary-tree",
+    "description": "Scapegoat self-balancing binary search tree in PHP",
+	"version": "1.0.0",
+	"keywords": ["binary", "tree", "self", "balancing", "balanced", "btree", "scapegoat"],
+    "authors": [
+        {
+            "name": "Michael Alexander",
+            "email": "beefsack@gmail.com"
+        }
+    ],
+	"homepage": "https://github.com/beefsack/php-scapegoat-binary-tree",
+	"support": {
+		"source": "https://github.com/beefsack/php-scapegoat-binary-tree",
+		"wiki": "https://github.com/beefsack/php-scapegoat-binary-tree/wiki",
+		"issues": "https://github.com/beefsack/php-scapegoat-binary-tree/issues"
+	},
+	"license": "GPL-3.0",
+    "require": {},
+	"require-dev": {
+		"phpunit/phpunit": "~4.1.*"
+	},
+	"autoload": {
+		"psr-4": {
+			"Scapegoat\\": "src/Scapegoat"
+		}
+	}
+}
