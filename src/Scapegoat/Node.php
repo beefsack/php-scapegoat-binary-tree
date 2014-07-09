@@ -9,12 +9,26 @@ class Node
 	private $right;
 	private $sortByFunc;
 
-	public function __construct($value, $sortByFunc) {
+	public function __construct($value, $sortByFunc)
+	{
 		if (!is_callable($sortByFunc)) {
 			throw new \InvalidArgumentException('sortBy must be callable');
 		}
 		$this->value = $value;
 		$this->sortByFunc = $sortByFunc;
+	}
+
+	public static function fromArray(array $a, $sortByFunc)
+	{
+		$root = null;
+		foreach ($a as $i) {
+			if ($root === null) {
+				$root = new Node($i, $sortByFunc);
+			} else {
+				$root->insert($i);
+			}
+		}
+		return $root;
 	}
 
 	public function getValue()
@@ -90,15 +104,15 @@ class Node
 
 	public function flatten()
 	{
-		$left = array();
+		$flat = array();
 		if (isset($this->left)) {
-			$left = $this->left->flatten();
+			$flat = $this->left->flatten();
 		}
-		$right = array();
+		$flat[] = $this->value;
 		if (isset($this->right)) {
-			$right = $this->right->flatten();
+			$flat = array_merge($flat, $this->right->flatten());
 		}
-		return array_merge($left, array($this->value), $right);
+		return $flat;
 	}
 
 	public function valuesEqual($value)
@@ -203,6 +217,17 @@ class Node
 			$greaterThan = $this->right->valuesGreaterThanOrEqual($value);
 		}
 		return $greaterThan;
+	}
+
+	public function size() {
+		$size = 1;
+		if (isset($this->left)) {
+			$size += $this->left->size();
+		}
+		if (isset($this->right)) {
+			$size += $this->right->size();
+		}
+		return $size;
 	}
 
 	public function height() {
