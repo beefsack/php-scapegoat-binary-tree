@@ -4,28 +4,28 @@ namespace Scapegoat;
 
 class SortBy
 {
-	public function value()
+	public static function value()
 	{
 		return function($v) {
 			return $v;
 		};
 	}
 
-	public function method($method)
+	public static function method($method)
 	{
 		return function($v) use ($method) {
 			return $v->$method();
 		};
 	}
 
-	public function arrayOffset($offset)
+	public static function arrayOffset($offset)
 	{
 		return function($v) use ($offset) {
 			return $v[$offset];
 		};
 	}
 
-	public function member($member)
+	public static function member($member)
 	{
 		return function($v) use ($member) {
 			return $v->$member;
